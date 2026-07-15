@@ -74,7 +74,7 @@ ul {
     display: flex;
     align-items: center;
     padding: 0 10%;
-    padding-top: 80px; /* وعشان الـ fixed navbar */
+    padding-top: 80px; /*fixed navbar */
 }
 
 .hero-content h5 {
@@ -156,7 +156,7 @@ ul {
     display: inline-block;
 }
 
-/* الخط الصغير اللي تحت عنوان الـ Section */
+
 .section-title::after {
     content: '';
     position: absolute;
@@ -203,7 +203,7 @@ ul {
     font-size: 2.5rem;
 }
 
-/* ألوان الأيقونات الأصلية عشان تدي شكل مبهج */
+
 .html-icon { color: #e34c26; }
 .css-icon { color: #264de4; }
 .js-icon { color: #f0db4f; }
@@ -216,7 +216,7 @@ ul {
     color: var(--title-color);
 }
 
-/* Responsive لملائمة الشاشات الصغيرة */
+/* Responsive */
 @media (max-width: 768px) {
     .about-skills-container {
         grid-template-columns: 1fr;
@@ -227,7 +227,7 @@ ul {
 /* Projects Section */
 .projects-container {
     padding: 5rem 10%;
-    background-color: rgba(30, 41, 59, 0.3); /* خلفية أغمق سنة عشان تفصل السيكشن */
+    background-color: rgba(30, 41, 59, 0.3); 
 }
 
 .center-title {
@@ -237,7 +237,7 @@ ul {
 
 .center-title .section-title::after {
     left: 50%;
-    transform: translateX(-50%); /* يخلي الخط اللي تحت العنوان في النص بالظبط */
+    transform: translateX(-50%); 
 }
 
 .projects-grid {
@@ -261,7 +261,7 @@ ul {
 
 .project-img {
     height: 200px;
-    background-color: #0f172a; /* خلفية مؤقتة لو مفيش صورة */
+    background-color: #0f172a; 
     overflow: hidden;
 }
 
@@ -273,11 +273,15 @@ ul {
 }
 
 .project-card:hover .project-img img {
-    transform: scale(1.05); /* زوم خفيف للصورة لما نعدي عليها بالماوس */
+    transform: scale(1.05); 
 }
 
 .project-info {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    min-height: 320px;
 }
 
 .project-info h4 {
@@ -289,18 +293,16 @@ ul {
 .project-info p {
     font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 1.2rem;
-    height: 70px; /* يوحد طول الفقرة عشان الكروت تطلع مقاس واحد */
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 1.5rem; 
+    
 }
 
-/* التاجز بتاعة التكنولوجي المستعملة */
+
 .project-tags {
-    display: flex;
+   display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; 
 }
 
 .project-tags span {
@@ -316,6 +318,7 @@ ul {
 .project-links {
     display: flex;
     gap: 1rem;
+    margin-top: auto;
 }
 
 .proj-btn {
@@ -372,10 +375,10 @@ ul {
 
 /* Footer Section */
 .footer {
-    background-color: #0c111e; /* خلفية أغمق سنة من الـ body للـ Footer */
+    background-color: #0c111e; 
     padding: 3rem 10% 2rem 10%;
     text-align: center;
-    border-top: 1px solid rgba(148, 163, 184, 0.05); /* خط علوي خفيف جداً للفصل */
+    border-top: 1px solid rgba(148, 163, 184, 0.05); 
 }
 
 .footer-socials {
