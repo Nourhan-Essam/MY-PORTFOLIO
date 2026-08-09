@@ -24,8 +24,10 @@
 
     <section class="hero-section" id="hero">
         <div class="hero-content">
-            <h5>Hi there, I'm</h5>
-            <h1>Nourhan</h1>
+            <h2 id="hi">Hi there, I'm</h2>
+           <h1 class="big-heading">
+ <span class="typewriter-typing">Nourhan</span>
+</h1>
             <h2>I build clean, interactive, and responsive web experiences.</h2>
             <p>A Frontend Developer passionate about turning ideas into functional, beautiful code. Specializing in JavaScript and React.</p>
             <div class="hero-cta">
@@ -68,16 +70,36 @@
                 </div>
             </div>
         </div>
-
+        
     </section>
-
-<section class="projects-container" id="projects">
+    
+    <section class="projects-container" id="projects" >
         <div class="center-title">
             <h3 class="section-title">My Projects</h3>
         </div>
 
-        <div class="projects-grid">
+        <div class="projects-grid" >
             
+            <div class="project-card" > 
+                            <div class="project-img">
+                                <img src="Images/El-Bashawat.png" alt="El-Bashawat Restaurant">
+                            </div>
+                            <div class="project-info">
+                                <h4>"El-Bashawat Restaurant</h4>
+                                <p>A modern, interactive web application designed for a restaurant experience, focusing on clean UI/UX and seamless performance.</p>
+                                <div class="project-tags" class="tech-stack-container">
+                                    <span class="skill-card">HTML5</span>
+                                    <span class="skill-card">CSS3</span>
+                                    <span class="skill-card">Responsive Design</span>
+                                    <span class="skill-card">JavaScript</span>
+                                    <span class="skill-card">GSAP</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/Nourhan-Essam/El-Bashawat-Restaurant" target="_blank" class="proj-btn code-btn"><i class="fab fa-github"></i> Code</a>
+                                    <a href="https://el-bashawat-restaurant.vercel.app/" target="_blank" class="proj-btn live-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
             <div class="project-card">
                 <div class="project-img">
                     <img src="Images/Wellness&Power.png" alt="Wellness&Power Website">
@@ -157,6 +179,8 @@
                 </div>
             </div>
 
+
+
         </div>
     </section>
 
@@ -170,6 +194,8 @@
         </div>
     </section>
 
+    
+
     <footer class="footer">
         <div class="footer-socials">
             <a href="https://www.linkedin.com/in/norhan-essam-552aa0252/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -179,6 +205,10 @@
         <p class="copyright">&copy; 2026 Nourhan. All rights reserved.</p>
     </footer>
 
-  
+  <!-- GSAP الأساسية -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+<!-- ScrollTrigger Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
