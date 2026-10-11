@@ -1,164 +1,173 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nourhan | Frontend Developer & Content Creator</title>
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bgDark: '#07090E',
-            cardBg: '#0F1523',
-            accentPurple: '#A855F7',
-            accentCyan: '#06B6D4',
-          }
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nourhan | Front-End Developer & UI/UX Designer</title>
+
+<!-- SEO & link preview -->
+<meta name="description" content="Freelance Front-End Developer & UI/UX designer building responsive websites, portfolios, and interactive web apps. Available for remote projects.">
+<meta property="og:title" content="Nourhan | Front-End Developer & UI/UX Designer">
+<meta property="og:description" content="Designed in Figma, built with code. Portfolios, landing pages, and interactive web apps.">
+<meta property="og:type" content="website">
+<!-- TODO: create a 1200x630 og-image.png and put it in the repo root -->
+<meta property="og:image" content="https://my-portfolio-rouge-mu-20.vercel.app/og-image.png">
+<meta name="theme-color" content="#07090E">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        bgDark: '#07090E',
+        cardBg: '#0F1523',
+        accentPurple: '#A855F7',
+        accentCyan: '#06B6D4',
       }
     }
-  </script>
-  <style>
-    .glass-card {
-      background: rgba(15, 21, 35, 0.75);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    
-    .glass-card:hover {
-      border-color: rgba(168, 85, 247, 0.5);
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 20px 40px -15px rgba(168, 85, 247, 0.25);
-    }
+  }
+}
+</script>
 
-    /* Glow animation for backgrounds */
-    @keyframes pulseGlow {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
-      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.35; }
-    }
+<style>
+.glass-card {
+  background: rgba(15, 21, 35, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.glass-card:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 40px -15px rgba(168, 85, 247, 0.25);
+}
 
-    .glow-bg {
-      animation: pulseGlow 8s infinite ease-in-out;
-    }
+/* Navbar: same glass look but NO hover lift */
+.nav-glass {
+  background: rgba(15, 21, 35, 0.75);
+  backdrop-filter: blur(16px);
+}
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #07090E; }
-    ::-webkit-scrollbar-thumb { background: #A855F7; border-radius: 4px; }
-  </style>
+/* Glow animation for backgrounds */
+@keyframes pulseGlow {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.35; }
+}
+.glow-bg { animation: pulseGlow 8s infinite ease-in-out; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #07090E; }
+::-webkit-scrollbar-thumb { background: #A855F7; border-radius: 4px; }
+
+/* AOS puts its own transform on animated cards, which used to cancel the hover lift.
+   A) The lift always wins over AOS (works even without JS).
+   B) Once the entrance animation is done, JS adds .aos-done so the lift is snappy (0.4s). */
+.glass-card[data-aos]:hover {
+  transform: translateY(-8px) scale(1.01) !important;
+}
+.glass-card.aos-done {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  transition-delay: 0s !important;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .glow-bg { animation: none; }
+  .glass-card, .glass-card:hover { transition: none; transform: none; }
+  .glass-card[data-aos]:hover, .glass-card.aos-done:hover { transform: none !important; }
+}
+</style>
 </head>
+
 <body class="bg-bgDark text-gray-200 font-sans antialiased selection:bg-accentPurple selection:text-white overflow-x-hidden">
 
-  <nav class="fixed top-0 w-full z-50 glass-card border-b border-gray-800/40">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-black tracking-widest text-white">NOURHAN<span class="text-accentPurple">.</span></a>
-      <div class="space-x-8 text-sm font-medium hidden md:flex items-center">
-        <a href="#about" class="text-gray-400 hover:text-white transition">Story</a>
+<!-- ==================== NAVBAR ==================== -->
+<nav class="fixed top-0 w-full z-50 nav-glass border-b border-gray-800/40">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="#" class="text-2xl font-black tracking-widest text-white">NOURHAN<span class="text-accentPurple">.</span></a>
+    <div class="flex items-center gap-8 text-sm font-medium">
+      <div class="hidden md:flex items-center gap-8">
+         <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
         <a href="#testimonials" class="text-gray-400 hover:text-white transition">Reviews</a>
-        <a href="#skills" class="text-gray-400 hover:text-white transition">Skills</a>
         <a href="#projects" class="text-gray-400 hover:text-white transition">Projects</a>
-        <a href="#contact" class="px-5 py-2.5 bg-gradient-to-r from-accentPurple to-accentCyan text-white font-semibold rounded-full hover:shadow-lg hover:shadow-accentPurple/30 transition duration-300">Connect</a>
+        <a href="#skills" class="text-gray-400 hover:text-white transition">Skills</a>
       </div>
+      <!-- Always visible, including on mobile -->
+      <a href="#contact" class="px-5 py-2.5 bg-gradient-to-r from-accentPurple to-accentCyan text-white font-semibold rounded-full hover:shadow-lg hover:shadow-accentPurple/30 transition duration-300">Connect</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 px-6">
-    <div class="glow-bg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-accentPurple/30 to-accentCyan/30 rounded-full blur-[140px] pointer-events-none"></div>
+<!-- ==================== HERO ==================== -->
+<section id="about" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 px-6">
+  <div class="glow-bg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-accentPurple/30 to-accentCyan/30 rounded-full blur-[140px] pointer-events-none"></div>
 
-    <div class="max-w-4xl mx-auto text-center z-10 hero-content">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8" data-aos="zoom-in" data-aos-duration="800">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-xs font-semibold text-gray-300 tracking-wide uppercase">Frontend Developer & Content Creator</span>
-      </div>
+  <div class="max-w-4xl mx-auto text-center z-10 hero-content">
+    <div class="hero-step inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-sm font-semibold text-gray-300 tracking-wide uppercase">Front-End Developer & UI/UX Designer · Available for Freelance</span>
+    </div>
 
-      <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6" data-aos="fade-up" data-aos-delay="200">
-        Designing Code That <br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPurple via-fuchsia-400 to-accentCyan">Transforms Ideas</span> Into Art.
-      </h1>
+    <h1 class="hero-step text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-8">
+      I turn your idea into a website
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPurple via-fuchsia-400 to-accentCyan">people enjoy using.</span>
+    </h1>
 
-      <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
-        A Frontend Developer & Content Creator bridging <strong class="text-gray-200">Business Systems</strong> and <strong class="text-gray-200">Interactive UI</strong> to build clean, interactive, and responsive web applications.
+    <div class="space-y-5 text-gray-400 text-xl md:text-2xl leading-relaxed mb-12 max-w-3xl mx-auto">
+      <p class="hero-step">
+        Hi, I'm Nourhan Essam, a front-end developer and UI/UX designer. I start by understanding what your website needs to do, sketch the design in <strong class="text-gray-200">Figma</strong>, then build it with code so it works on every screen.
       </p>
-
-      <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="600">
-        <a href="#projects" class="px-8 py-4 bg-gradient-to-r from-accentPurple to-accentCyan text-white font-bold rounded-2xl shadow-xl shadow-accentPurple/20 hover:scale-105 transition duration-300">
-          Explore Projects <i class="fa-solid fa-arrow-down ml-2"></i>
-        </a>
-        <a href="#contact" class="px-8 py-4 glass-card text-white font-semibold rounded-2xl hover:bg-white/10 hover:scale-105 transition duration-300">
-          Get In Touch
-        </a>
-      </div>
+      <p class="hero-step">
+        Portfolios, landing pages, online ordering, interactive web apps: whatever your idea needs, I design it and build it around your goals.
+      </p>
     </div>
-  </section>
 
-  <section id="about" class="py-24 border-y border-gray-800/40 relative">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">How I Turn Ideas into Reality</h2>
-        <p class="text-gray-400 text-sm">Every line of code serves a purpose. Here is how I approach creating impactful web solutions.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-12 h-12 rounded-2xl bg-accentPurple/20 text-accentPurple flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-lightbulb"></i></div>
-          <h3 class="text-lg font-bold text-white mb-2">1. Understanding the Goal</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">I bridge Business Information Systems with development to understand your audience and core objectives first.</p>
-        </div>
-        <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="250">
-          <div class="w-12 h-12 rounded-2xl bg-accentCyan/20 text-accentCyan flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-code"></i></div>
-          <h3 class="text-lg font-bold text-white mb-2">2. Clean & Scalable Code</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Writing modular JavaScript, React, and responsive layouts that ensure high performance and seamless interaction.</p>
-        </div>
-        <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
-          <div class="w-12 h-12 rounded-2xl bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-          <h3 class="text-lg font-bold text-white mb-2">3. Eye-Catching Animations</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">Adding micro-interactions and smooth animations using GSAP & Tailwind to leave a memorable impression.</p>
-        </div>
-      </div>
+    <div class="hero-step flex flex-col sm:flex-row justify-center gap-4">
+      <a href="#projects" class="px-10 py-5 text-lg bg-gradient-to-r from-accentPurple to-accentCyan text-white font-bold rounded-2xl shadow-xl shadow-accentPurple/20 hover:scale-105 transition duration-300">
+        See My Work <i class="fa-solid fa-arrow-down ml-2"></i>
+      </a>
+      <a href="https://wa.me/201099952041?text=Hello,%20I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener" class="px-10 py-5 text-lg glass-card text-white font-semibold rounded-2xl hover:bg-white/10 hover:scale-105 transition duration-300">
+        Start a Project <i class="fa-brands fa-whatsapp ml-2"></i>
+      </a>
     </div>
-  </section>
 
- <!-- Testimonials Section -->
-<section id="testimonials" class="py-24 max-w-6xl mx-auto px-6" dir="rtl">
-  
-  <!-- Header -->
- <div class="text-center mb-16" data-aos="fade-up">
+    <a href="updated/My CV.pdf" download class="hero-step inline-flex items-center gap-2 mt-8 text-base text-gray-400 hover:text-white transition">
+      <i class="fa-solid fa-file-arrow-down"></i> Download my CV
+    </a>
+  </div>
+</section>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<section id="testimonials" lang="ar" class="py-24 max-w-6xl mx-auto px-6" dir="rtl">
+
+  <div class="text-center mb-16" data-aos="fade-up">
     <span class="text-pink-400 text-xs font-mono tracking-widest uppercase">Feedback & Testimonials</span>
     <h2 class="text-4xl font-extrabold text-white mt-1">What People Say 💬</h2>
     <p class="text-gray-400 text-sm mt-2">Real feedback from clients and fellow developers on my work quality and presentation.</p>
-</div>
+  </div>
 
-  <!-- Cards Grid -->
   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-    
-    <!-- 1. WhatsApp HR & Portfolio Review -->
+
+    <!-- 1. Esraa (WhatsApp) -->
     <div class="glass-card bg-[#12121a]/90 p-6 rounded-3xl border border-gray-800/80 hover:border-pink-500/30 transition-all duration-300 flex flex-col justify-between" data-aos="fade-up">
       <div>
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-1 text-amber-400 text-xs">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
-          <!-- <span class="text-emerald-400 text-xs font-mono bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20 flex items-center gap-1.5">
-            <i class="fa-brands fa-whatsapp"></i> واتساب
-          </span> -->
         </div>
-        
         <p class="text-gray-200 text-xs leading-relaxed italic mb-6">
           "تسلم ايدك يا بشمهندسه ❤️ البورتفوليو خطير حتى الـ HR شكرت فيه و قالت طريقة عرضك لشغلك ممتازة 🥰"
         </p>
       </div>
-
       <div class="pt-4 border-t border-gray-800/50 flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs">
-            C
-          </div>
+          <div class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs">E</div>
           <div>
             <h4 class="text-white text-xs font-bold">Esraa Moammed</h4>
             <p class="text-gray-500 text-[10px]">Photographer</p>
@@ -174,21 +183,14 @@
           <div class="flex items-center gap-1 text-amber-400 text-xs">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
-          <!-- <span class="text-sky-400 text-xs font-mono bg-sky-500/10 px-2.5 py-1 rounded-full border border-sky-500/20 flex items-center gap-1.5">
-            <i class="fa-brands fa-linkedin"></i> لينكد إن
-          </span> -->
         </div>
-
         <p class="text-gray-200 text-xs leading-relaxed italic mb-6">
           "ما شاء الله تبارك الله 👏 ، جميل إن حضرتك فكرتي بشكل مختلف عن معظم المبرمجين، معظمنا بيفكر في الكود والتكنيكال وكده، وبينسي الجانب التسويقي او إيه اللي هيساعد العميل إنه يعمل مبيعات أكثر."
         </p>
       </div>
-
       <div class="pt-4 border-t border-gray-800/50 flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xs">
-            SK
-          </div>
+          <div class="w-8 h-8 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-xs">SK</div>
           <div>
             <h4 class="text-white text-xs font-bold">Shawky Khalil</h4>
             <p class="text-gray-500 text-[10px]">Backend Developer | Node.js</p>
@@ -197,28 +199,21 @@
       </div>
     </div>
 
-    <!-- 3. WhatsApp Client Review -->
+    <!-- 3. Menna Salim (WhatsApp client) -->
     <div class="glass-card bg-[#12121a]/90 p-6 rounded-3xl border border-gray-800/80 hover:border-pink-500/30 transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
       <div>
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-1 text-amber-400 text-xs">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
-          <!-- <span class="text-emerald-400 text-xs font-mono bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20 flex items-center gap-1.5">
-            <i class="fa-brands fa-whatsapp"></i> واتساب
-          </span> -->
         </div>
-
         <p class="text-gray-200 text-xs leading-relaxed italic mb-6">
           "انا انبهرت بجد.. واو 🩵 مش لاقية حاجة اقولها بجد م العظمة.. بجد ايه الشطارة دي... تحفة اللهم بارك علي الجمدان 🩵 انا عليت سقف طموحي اوي وانتي وصلتيله بطريقة اجمد ازاي طب فهميني 😂🩵"
         </p>
       </div>
-
       <div class="pt-4 border-t border-gray-800/50 flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">
-            W
-          </div>
+          <div class="w-8 h-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">M</div>
           <div>
             <h4 class="text-white text-xs font-bold">Menna Salim</h4>
             <p class="text-gray-500 text-[10px]">German Instructor</p>
@@ -227,30 +222,23 @@
       </div>
     </div>
 
-    <!-- 4. Shereen Ashraf (LinkedIn Comment) -->
+    <!-- 4. Shereen Ashraf (LinkedIn comment) -->
     <div class="glass-card bg-[#12121a]/90 p-6 rounded-3xl border border-gray-800/80 hover:border-pink-500/30 transition-all duration-300 flex flex-col justify-between" data-aos="fade-up">
       <div>
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-1 text-amber-400 text-xs">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
-          <!-- <span class="text-sky-400 text-xs font-mono bg-sky-500/10 px-2.5 py-1 rounded-full border border-sky-500/20 flex items-center gap-1.5">
-            <i class="fa-brands fa-linkedin"></i> لينكد إن
-          </span> -->
         </div>
-
         <p class="text-gray-200 text-xs leading-relaxed italic mb-6">
           "بجد تسلمي ع الشرح الجميل والمبسط دا يا نورهان 😊🤍 انا اه لسه موصلتش ل الجزء اللي بتشرحيه دا بس انا حفظت البوست عشان ارجعله بعد كده 🤍🤍 وبالتوفيق 🫂"
         </p>
       </div>
-
       <div class="pt-4 border-t border-gray-800/50 flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs">
-            SA
-          </div>
+          <div class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs">SA</div>
           <div>
-            <h4 class="text-white text-xs font-bold">Shereen ashraf Abo taha</h4>
+            <h4 class="text-white text-xs font-bold">Shereen Ashraf Abo Taha</h4>
             <p class="text-gray-500 text-[10px]">UI/UX designer | CS student</p>
           </div>
         </div>
@@ -260,117 +248,70 @@
   </div>
 </section>
 
-  <section id="skills" class="py-24 bg-cardBg/30 border-y border-gray-800/40" data-aos="fade-up">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <span class="text-accentCyan text-xs font-mono uppercase tracking-widest">Capabilities</span>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-1 mb-3">Tech Stack & Creative Skills</h2>
-      <p class="text-gray-400 text-sm mb-14 max-w-xl mx-auto">Tools and frameworks I build digital products with.</p>
+<!-- ==================== SERVICES ==================== -->
+<section id="services" class="py-24 max-w-6xl mx-auto px-6">
+  <div class="text-center mb-14" data-aos="fade-up">
+    <span class="text-accentCyan text-xs font-mono uppercase tracking-widest">What I Build</span>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Designed in Figma. Built with Code.</h2>
+  </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="100">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 text-3xl group-hover:rotate-12 transition duration-300">
-            <i class="fa-brands fa-html5"></i>
-          </div>
-          <h4 class="text-white font-bold text-base">HTML5</h4>
-          <p class="text-gray-500 text-xs mt-1">Semantic Structure</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="200">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 text-3xl group-hover:rotate-12 transition duration-300">
-            <i class="fa-brands fa-css3-alt"></i>
-          </div>
-          <h4 class="text-white font-bold text-base">CSS3</h4>
-          <p class="text-gray-500 text-xs mt-1">Responsive Design</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="300">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-yellow-400/10 flex items-center justify-center text-yellow-400 text-3xl group-hover:rotate-12 transition duration-300">
-            <i class="fa-brands fa-js"></i>
-          </div>
-          <h4 class="text-white font-bold text-base">JavaScript</h4>
-          <p class="text-gray-500 text-xs mt-1">ES6+ Logic</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="400">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400 text-3xl group-hover:rotate-12 transition duration-300">
-            <i class="fa-brands fa-react"></i>
-          </div>
-          <h4 class="text-white font-bold text-base">React.js</h4>
-          <p class="text-gray-500 text-xs mt-1">Interactive Web Apps</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="100">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-teal-400/10 flex items-center justify-center text-teal-400 text-3xl group-hover:rotate-12 transition duration-300">
-            <i class="fa-solid fa-wind"></i>
-          </div>
-          <h4 class="text-white font-bold text-base">Tailwind CSS</h4>
-          <p class="text-gray-500 text-xs mt-1">Modern UI Styling</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="200">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-emerald-400/10 flex items-center justify-center text-emerald-400 text-3xl group-hover:rotate-12 transition duration-300">
-            <i class="fa-solid fa-play"></i>
-          </div>
-          <h4 class="text-white font-bold text-base">GSAP</h4>
-          <p class="text-gray-500 text-xs mt-1">Animations</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="300">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500 text-3xl group-hover:rotate-12 transition duration-300">
-            <i class="fa-brands fa-git-alt"></i>
-          </div>
-          <h4 class="text-white font-bold text-base">Git & GitHub</h4>
-          <p class="text-gray-500 text-xs mt-1">Version Control</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="400">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-purple-400/10 flex items-center justify-center text-purple-400 text-3xl group-hover:rotate-12 transition duration-300">
-            <i class="fa-solid fa-video"></i>
-          </div>
-          <h4 class="text-white font-bold text-base">Content Creation</h4>
-          <p class="text-gray-500 text-xs mt-1">Tech Storytelling</p>
-        </div>
-      </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+      <div class="w-12 h-12 rounded-2xl bg-accentPurple/20 text-accentPurple flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-id-card"></i></div>
+      <h3 class="text-lg font-bold text-white mb-2">Portfolio Websites</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">Personal sites that present your work clearly and make it easy for visitors to get in touch.</p>
     </div>
-  </section>
-<!--Projects-->
-  <section id="projects" class="py-28 max-w-6xl mx-auto px-6">
-  
-  <!-- Section Title -->
+    <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="250">
+      <div class="w-12 h-12 rounded-2xl bg-accentCyan/20 text-accentCyan flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-rocket"></i></div>
+      <h3 class="text-lg font-bold text-white mb-2">Landing Pages</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">Responsive, fast pages with smooth animations that guide visitors to take action.</p>
+    </div>
+    <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
+      <div class="w-12 h-12 rounded-2xl bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-puzzle-piece"></i></div>
+      <h3 class="text-lg font-bold text-white mb-2">Interactive Web Apps</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">Custom features like quizzes, menus, filters, and shopping carts, built around what your users need.</p>
+    </div>
+  </div>
+
+  <div class="text-center mt-12">
+    <a href="https://wa.me/201099952041?text=Hello,%20I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener"
+       class="inline-block px-8 py-4 bg-gradient-to-r from-accentPurple to-accentCyan text-white font-bold rounded-2xl hover:scale-105 transition duration-300">
+      Let's talk on WhatsApp <i class="fa-brands fa-whatsapp ml-2"></i>
+    </a>
+  </div>
+</section>
+
+<!-- ==================== PROJECTS ==================== -->
+<section id="projects" class="py-28 max-w-6xl mx-auto px-6 border-t border-gray-800/40">
+
   <div class="text-center mb-16" data-aos="fade-up">
     <span class="text-accentPurple text-xs font-mono tracking-widest uppercase">Portfolio</span>
     <h2 class="text-4xl font-extrabold text-white mt-1">Featured Projects</h2>
     <p class="text-gray-400 text-sm mt-2">Selected highlights of my development work.</p>
   </div>
 
-  <!-- Projects Grid -->
   <div class="grid md:grid-cols-2 gap-8">
-    
-    <!-- ==================== Project 1: Deutsch Quiz Studio ==================== -->
+
+    <!-- Project 1: Deutsch Quiz Studio -->
     <div class="glass-card rounded-3xl overflow-hidden group border border-gray-800/80 hover:border-pink-500/30 transition-all duration-300" data-aos="fade-up">
-      
-      <!-- Image Slider -->
       <div class="relative w-full h-64 md:h-80 overflow-hidden bg-gray-900/50 group/slider">
         <div class="project-carousel flex w-full h-full transition-transform duration-500 ease-in-out">
-          <img src="./updated/Images/Deutch/German1.png" alt="Deutsch Quiz Studio 1" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-          <img src="./updated/Images/Deutch/German2.png" alt="Deutsch Quiz Studio 2" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-          <img src="./updated/Images/Deutch/German3.png" alt="Deutsch Quiz Studio 3" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/Deutch/German1.png" alt="Deutsch Quiz Studio: question form screen" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/Deutch/German2.png" alt="Deutsch Quiz Studio: quiz with a dodging wrong-answer button" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/Deutch/German3.png" alt="Deutsch Quiz Studio: celebration confetti screen" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
         </div>
-
         <div class="absolute inset-0 bg-gradient-to-t from-[#0d0d12] via-transparent to-transparent opacity-90 pointer-events-none"></div>
-
-        <button onclick="moveSlide(this, -1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 z-20">
+        <button onclick="moveSlide(this, -1)" aria-label="Previous image" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-all duration-300 z-20">
           <i class="fa-solid fa-chevron-left text-sm"></i>
         </button>
-        <button onclick="moveSlide(this, 1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 z-20">
+        <button onclick="moveSlide(this, 1)" aria-label="Next image" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-all duration-300 z-20">
           <i class="fa-solid fa-chevron-right text-sm"></i>
         </button>
       </div>
 
-      <!-- Card Body -->
       <div class="p-6 md:p-8 relative z-10">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-          <span class="text-xs font-mono px-3 py-1 bg-pink-500/10 text-pink-400 rounded-full border border-pink-500/20">Gamified E-Learning App</span>
+          <span class="text-xs font-mono px-3 py-1 bg-pink-500/10 text-pink-400 rounded-full border border-pink-500/20">Client Project · Gamified E-Learning App</span>
           <div class="flex flex-wrap gap-1.5">
             <span class="px-2.5 py-0.5 bg-accentPurple/10 text-accentPurple rounded-full text-[11px] font-mono">JavaScript</span>
             <span class="px-2.5 py-0.5 bg-accentCyan/10 text-accentCyan rounded-full text-[11px] font-mono">DOM Physics</span>
@@ -380,71 +321,50 @@
 
         <h3 class="text-2xl font-extrabold text-white group-hover:text-pink-400 transition-colors mb-5">Deutsch Quiz Studio</h3>
 
-        <!-- Stacked Details -->
         <div class="flex flex-col gap-3 mb-6 text-sm">
           <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-            <h4 class="text-pink-400 font-bold mb-1.5 flex items-center gap-2 text-xs">
-              <i class="fa-solid fa-triangle-exclamation"></i> The Problem
-            </h4>
-            <p class="text-gray-300 text-xs leading-relaxed">
-              A German language instructor needed an engaging classroom quiz tool that allows custom question creation while preventing students from clicking wrong answers in a playful way.
-            </p>
+            <h4 class="text-pink-400 font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-triangle-exclamation"></i> The Problem</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">A German language instructor needed an engaging classroom quiz tool that allows custom question creation while preventing students from clicking wrong answers in a playful way.</p>
           </div>
-
           <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-            <h4 class="text-emerald-400 font-bold mb-1.5 flex items-center gap-2 text-xs">
-              <i class="fa-solid fa-lightbulb"></i> The Solution
-            </h4>
-            <p class="text-gray-300 text-xs leading-relaxed">
-              Developed a quiz app featuring a dynamic "dodging" wrong button that flees from the cursor, an expanding correct button, automated German hint triggers, and a celebration confetti screen.
-            </p>
+            <h4 class="text-emerald-400 font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-lightbulb"></i> The Solution</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">Developed a quiz app featuring a dynamic "dodging" wrong button that flees from the cursor, an expanding correct button, automated German hint triggers, and a celebration confetti screen.</p>
           </div>
-
           <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-            <h4 class="text-accentCyan font-bold mb-1.5 flex items-center gap-2 text-xs">
-              <i class="fa-solid fa-gears"></i> The Process
-            </h4>
-            <p class="text-gray-300 text-xs leading-relaxed">
-              Designed a dynamic form, calculated real-time cursor distance for button dodging physics, implemented scale feedback, and applied a friendly "Just a Girl" color aesthetic.
-            </p>
+            <h4 class="text-accentCyan font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-gears"></i> The Process</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">Designed a dynamic form, calculated real-time cursor distance for button dodging physics, implemented scale feedback, and applied a friendly "Just a Girl" color aesthetic.</p>
           </div>
         </div>
 
         <div class="flex flex-wrap gap-3 pt-2 border-t border-gray-800/50">
-          <a href="https://deutsch-lernen-beta.vercel.app/" target="_blank" class="px-5 py-2 bg-gradient-to-r from-pink-500 to-accentPurple text-white text-xs font-bold rounded-xl hover:opacity-90 transition">Live Demo</a>
-          <a href="https://github.com/Nourhan-Essam/Deutsch-Lernen" target="_blank" class="px-5 py-2 border border-gray-700 text-gray-300 text-xs font-bold rounded-xl hover:bg-white/5 transition">Source Code</a>
+          <a href="https://deutsch-lernen-beta.vercel.app/" target="_blank" rel="noopener" class="px-5 py-2 bg-gradient-to-r from-pink-500 to-accentPurple text-white text-xs font-bold rounded-xl hover:opacity-90 transition">Live Demo</a>
+          <a href="https://github.com/Nourhan-Essam/Deutsch-Lernen" target="_blank" rel="noopener" class="px-5 py-2 border border-gray-700 text-gray-300 text-xs font-bold rounded-xl hover:bg-white/5 transition">Source Code</a>
         </div>
       </div>
     </div>
 
-
-    <!-- ==================== Project 2: Esraa Portfolio ==================== -->
+    <!-- Project 2: Photographer & Editor Portfolio -->
     <div class="glass-card rounded-3xl overflow-hidden group border border-gray-800/80 hover:border-pink-500/30 transition-all duration-300" data-aos="fade-up">
-      
-      <!-- Image Slider -->
       <div class="relative w-full h-64 md:h-80 overflow-hidden bg-gray-900/50 group/slider">
         <div class="project-carousel flex w-full h-full transition-transform duration-500 ease-in-out">
-          <img src="./updated/Images/EsraaPortofilio/Esraa1.png" alt="Esraa Portfolio 1" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-          <img src="./updated/Images/EsraaPortofilio/Esraa2.png" alt="Esraa Portfolio 2" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-          <img src="./updated/Images/EsraaPortofilio/Esraa3.png" alt="Esraa Portfolio 3" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-          <img src="./updated/Images/EsraaPortofilio/Esraa4.png" alt="Esraa Portfolio 3" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-          <img src="./updated/Images/EsraaPortofilio/Esraa5.png" alt="Esraa Portfolio 3" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/EsraaPortofilio/Esraa1.png" alt="Photographer portfolio: homepage hero" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/EsraaPortofilio/Esraa2.png" alt="Photographer portfolio: gallery with category filter" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/EsraaPortofilio/Esraa3.png" alt="Photographer portfolio: before and after comparison slider" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/EsraaPortofilio/Esraa4.png" alt="Photographer portfolio: project details view" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/EsraaPortofilio/Esraa5.png" alt="Photographer portfolio: booking call to action" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
         </div>
-
         <div class="absolute inset-0 bg-gradient-to-t from-[#0d0d12] via-transparent to-transparent opacity-90 pointer-events-none"></div>
-
-        <button onclick="moveSlide(this, -1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 z-20">
+        <button onclick="moveSlide(this, -1)" aria-label="Previous image" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-all duration-300 z-20">
           <i class="fa-solid fa-chevron-left text-sm"></i>
         </button>
-        <button onclick="moveSlide(this, 1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 z-20">
+        <button onclick="moveSlide(this, 1)" aria-label="Next image" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-all duration-300 z-20">
           <i class="fa-solid fa-chevron-right text-sm"></i>
         </button>
       </div>
 
-      <!-- Card Body -->
       <div class="p-6 md:p-8 relative z-10">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-          <span class="text-xs font-mono px-3 py-1 bg-pink-500/10 text-pink-400 rounded-full border border-pink-500/20">Interactive Photography Portfolio</span>
+          <span class="text-xs font-mono px-3 py-1 bg-pink-500/10 text-pink-400 rounded-full border border-pink-500/20">Client Project · Interactive Photography Portfolio</span>
           <div class="flex flex-wrap gap-1.5">
             <span class="px-2.5 py-0.5 bg-accentPurple/10 text-accentPurple rounded-full text-[11px] font-mono">JavaScript</span>
             <span class="px-2.5 py-0.5 bg-accentCyan/10 text-accentCyan rounded-full text-[11px] font-mono">Comparison Slider</span>
@@ -454,263 +374,305 @@
 
         <h3 class="text-2xl font-extrabold text-white group-hover:text-pink-400 transition-colors mb-5">Photographer & Editor Portfolio</h3>
 
-        <!-- Stacked Details -->
         <div class="flex flex-col gap-3 mb-6 text-sm">
           <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-            <h4 class="text-pink-400 font-bold mb-1.5 flex items-center gap-2 text-xs">
-              <i class="fa-solid fa-triangle-exclamation"></i> The Problem
-            </h4>
-            <p class="text-gray-300 text-xs leading-relaxed">
-              Traditional portfolios rely on static images that fail to showcase editing transformation skills, while cluttered galleries overwhelm busy recruiters.
-            </p>
+            <h4 class="text-pink-400 font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-triangle-exclamation"></i> The Problem</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">Traditional portfolios rely on static images that fail to showcase editing transformation skills, while cluttered galleries overwhelm busy recruiters.</p>
           </div>
-
           <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-            <h4 class="text-emerald-400 font-bold mb-1.5 flex items-center gap-2 text-xs">
-              <i class="fa-solid fa-lightbulb"></i> The Solution
-            </h4>
-            <p class="text-gray-300 text-xs leading-relaxed">
-              Built a dynamic portfolio with interactive "Before & After" image sliders, homepage hero shot curation, category filtering, and contextual hover details.
-            </p>
+            <h4 class="text-emerald-400 font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-lightbulb"></i> The Solution</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">Built a dynamic portfolio with interactive "Before & After" image sliders, homepage hero shot curation, category filtering, and contextual hover details.</p>
           </div>
-
           <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-            <h4 class="text-accentCyan font-bold mb-1.5 flex items-center gap-2 text-xs">
-              <i class="fa-solid fa-gears"></i> The Process
-            </h4>
-            <p class="text-gray-300 text-xs leading-relaxed">
-              Engineered a dual-layer image comparison slider using JS, structured a category filter, added hover metadata tooltips, and optimized CTA booking links.
-            </p>
+            <h4 class="text-accentCyan font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-gears"></i> The Process</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">Engineered a dual-layer image comparison slider using JS, structured a category filter, added hover metadata tooltips, and optimized CTA booking links.</p>
           </div>
         </div>
 
         <div class="flex flex-wrap gap-3 pt-2 border-t border-gray-800/50">
-          <a href="https://esraas-portfolio.vercel.app/" target="_blank" class="px-5 py-2 bg-gradient-to-r from-pink-500 to-accentPurple text-white text-xs font-bold rounded-xl hover:opacity-90 transition">Live Demo</a>
-          <a href="https://github.com/Nourhan-Essam/esraa-portfolio" target="_blank" class="px-5 py-2 border border-gray-700 text-gray-300 text-xs font-bold rounded-xl hover:bg-white/5 transition">Source Code</a>
+          <a href="https://esraas-portfolio.vercel.app/" target="_blank" rel="noopener" class="px-5 py-2 bg-gradient-to-r from-pink-500 to-accentPurple text-white text-xs font-bold rounded-xl hover:opacity-90 transition">Live Demo</a>
+          <a href="https://github.com/Nourhan-Essam/esraa-portfolio" target="_blank" rel="noopener" class="px-5 py-2 border border-gray-700 text-gray-300 text-xs font-bold rounded-xl hover:bg-white/5 transition">Source Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- More projects (toggle) -->
+  <div id="more-projects" class="hidden grid md:grid-cols-2 gap-8 mt-8">
+
+    <!-- Project 3: El-Bashawat Restaurant -->
+    <div class="glass-card rounded-3xl overflow-hidden group border border-gray-800/80 hover:border-pink-500/30 transition-all duration-300">
+      <div class="relative w-full h-64 md:h-80 overflow-hidden bg-gray-900/50 group/slider">
+        <div class="project-carousel flex w-full h-full transition-transform duration-500 ease-in-out">
+          <img src="./updated/Images/ElBashawat/ElBashawat1.png" alt="El-Bashawat restaurant app: home page" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/ElBashawat/ElBashawat2.png" alt="El-Bashawat restaurant app: menu with category filter" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/ElBashawat/ElBashawat3.png" alt="El-Bashawat restaurant app: video preview dialog" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+          <img src="./updated/Images/ElBashawat/ElBashawat4.png" alt="El-Bashawat restaurant app: shopping cart" loading="lazy" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0d0d12] via-transparent to-transparent opacity-90 pointer-events-none"></div>
+        <button onclick="moveSlide(this, -1)" aria-label="Previous image" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-all duration-300 z-20">
+          <i class="fa-solid fa-chevron-left text-sm"></i>
+        </button>
+        <button onclick="moveSlide(this, 1)" aria-label="Next image" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-all duration-300 z-20">
+          <i class="fa-solid fa-chevron-right text-sm"></i>
+        </button>
+      </div>
+
+      <div class="p-6 md:p-8 relative z-10">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <span class="text-xs font-mono px-3 py-1 bg-pink-500/10 text-pink-400 rounded-full border border-pink-500/20">Interactive Restaurant & Order Web App</span>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-0.5 bg-accentPurple/10 text-accentPurple rounded-full text-[11px] font-mono">ES6 Modules</span>
+            <span class="px-2.5 py-0.5 bg-accentCyan/10 text-accentCyan rounded-full text-[11px] font-mono">HTML5 Dialog</span>
+            <span class="px-2.5 py-0.5 bg-pink-500/10 text-pink-400 rounded-full text-[11px] font-mono">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-white group-hover:text-pink-400 transition-colors mb-5">El-Bashawat Restaurant App</h3>
+
+        <div class="flex flex-col gap-3 mb-6 text-sm">
+          <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
+            <h4 class="text-pink-400 font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-triangle-exclamation"></i> The Problem</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">Traditional restaurant sites suffer from slow page reloads during menu filtering, generic UI navigation that lacks brand identity, and clunky popups that degrade mobile performance.</p>
+          </div>
+          <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
+            <h4 class="text-emerald-400 font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-lightbulb"></i> The Solution</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">Engineered a custom knife-themed navbar, a high-performance native HTML5 dialog for video previews, instant multi-category menu filtering without page reloads, and a reactive cart system.</p>
+          </div>
+          <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
+            <h4 class="text-accentCyan font-bold mb-1.5 flex items-center gap-2 text-xs"><i class="fa-solid fa-gears"></i> The Process</h4>
+            <p class="text-gray-300 text-xs leading-relaxed">Architected clean ES6 modular code separating data management, DOM rendering, and cart logic. Built custom CSS knife UI shapes and utilized lightweight HTML5 modal dialogs.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 pt-2 border-t border-gray-800/50">
+          <a href="https://el-bashawat-restaurant.vercel.app/" target="_blank" rel="noopener" class="px-5 py-2 bg-gradient-to-r from-pink-500 to-accentPurple text-white text-xs font-bold rounded-xl hover:opacity-90 transition">Live Demo</a>
+          <a href="https://github.com/Nourhan-Essam/El-Bashawat-Restaurant" target="_blank" rel="noopener" class="px-5 py-2 border border-gray-700 text-gray-300 text-xs font-bold rounded-xl hover:bg-white/5 transition">Source Code</a>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Projects in Show More -->
-<div id="more-projects" class="hidden grid md:grid-cols-2 gap-8 mt-8">
-  
-  <!-- Project 3: El-Bashawat Restaurant -->
-  <div class="glass-card rounded-3xl overflow-hidden group border border-gray-800/80 hover:border-pink-500/30 transition-all duration-300" data-aos="fade-up">
-    
-    <!-- Image Slider -->
-    <div class="relative w-full h-64 md:h-80 overflow-hidden bg-gray-900/50 group/slider">
-      <div class="project-carousel flex w-full h-full transition-transform duration-500 ease-in-out">
-        <img src="./updated/Images/ElBashawat/ElBashawat1.png" alt="El-Bashawat Preview 1" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-        <img src="./updated/Images/ElBashawat/ElBashawat2.png" alt="El-Bashawat Preview 2" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-        <img src="./updated/Images/ElBashawat/ElBashawat3.png" alt="El-Bashawat Preview 3" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-        <img src="./updated/Images/ElBashawat/ElBashawat4.png" alt="El-Bashawat Preview 4" class="w-full min-w-full h-full object-cover object-top flex-shrink-0" />
-        
-      </div>
-
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0d0d12] via-transparent to-transparent opacity-90 pointer-events-none"></div>
-
-      <!-- Navigation Arrows -->
-      <button onclick="moveSlide(this, -1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 z-20">
-        <i class="fa-solid fa-chevron-left text-sm"></i>
-      </button>
-      <button onclick="moveSlide(this, 1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-pink-500 text-white p-2.5 rounded-full border border-white/10 backdrop-blur-md opacity-0 group-hover/slider:opacity-100 transition-all duration-300 z-20">
-        <i class="fa-solid fa-chevron-right text-sm"></i>
-      </button>
-    </div>
-
-    <!-- Card Body -->
-    <div class="p-6 md:p-8 relative z-10">
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-        <span class="text-xs font-mono px-3 py-1 bg-pink-500/10 text-pink-400 rounded-full border border-pink-500/20">Interactive Restaurant & Order Web App</span>
-        <div class="flex flex-wrap gap-1.5">
-          <span class="px-2.5 py-0.5 bg-accentPurple/10 text-accentPurple rounded-full text-[11px] font-mono">ES6 Modules</span>
-          <span class="px-2.5 py-0.5 bg-accentCyan/10 text-accentCyan rounded-full text-[11px] font-mono">HTML5 Dialog</span>
-          <span class="px-2.5 py-0.5 bg-pink-500/10 text-pink-400 rounded-full text-[11px] font-mono">Tailwind CSS</span>
-        </div>
-      </div>
-
-      <h3 class="text-2xl font-extrabold text-white group-hover:text-pink-400 transition-colors mb-5">El-Bashawat Restaurant App</h3>
-
-      <!-- Stacked Details -->
-      <div class="flex flex-col gap-3 mb-6 text-sm">
-        <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-          <h4 class="text-pink-400 font-bold mb-1.5 flex items-center gap-2 text-xs">
-            <i class="fa-solid fa-triangle-exclamation"></i> The Problem
-          </h4>
-          <p class="text-gray-300 text-xs leading-relaxed">
-            Traditional restaurant sites suffer from slow page reloads during menu filtering, generic UI navigation that lacks brand identity, and clunky popups that degrade mobile performance.
-          </p>
-        </div>
-
-        <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-          <h4 class="text-emerald-400 font-bold mb-1.5 flex items-center gap-2 text-xs">
-            <i class="fa-solid fa-lightbulb"></i> The Solution
-          </h4>
-          <p class="text-gray-300 text-xs leading-relaxed">
-            Engineered a custom knife-themed navbar, a high-performance native HTML5 dialog for video previews, instant multi-category menu filtering without page reloads, and a reactive cart system.
-          </p>
-        </div>
-
-        <div class="bg-cardBg/60 p-4 rounded-xl border border-gray-800/80">
-          <h4 class="text-accentCyan font-bold mb-1.5 flex items-center gap-2 text-xs">
-            <i class="fa-solid fa-gears"></i> The Process
-          </h4>
-          <p class="text-gray-300 text-xs leading-relaxed">
-            Architected clean ES6 modular code separating data management, DOM rendering, and cart logic. Built custom CSS knife UI shapes and utilized lightweight HTML5 modal dialogs.
-          </p>
-        </div>
-      </div>
-
-      <div class="flex flex-wrap gap-3 pt-2 border-t border-gray-800/50">
-        <a href="https://el-bashawat-restaurant.vercel.app/" target="_blank" class="px-5 py-2 bg-gradient-to-r from-pink-500 to-accentPurple text-white text-xs font-bold rounded-xl hover:opacity-90 transition">Live Demo</a>
-        <a href="https://github.com/Nourhan-Essam/El-Bashawat-Restaurant" target="_blank" class="px-5 py-2 border border-gray-700 text-gray-300 text-xs font-bold rounded-xl hover:bg-white/5 transition">Source Code</a>
-      </div>
-    </div>
+  <!-- Toggle Button -->
+  <div class="text-center mt-12">
+    <button id="toggle-btn" onclick="toggleProjects()" class="px-8 py-3.5 border border-accentPurple text-accentPurple hover:bg-accentPurple hover:text-white font-bold rounded-full transition duration-300 shadow-lg">
+      Show All Projects <i class="fa-solid fa-chevron-down ml-2"></i>
+    </button>
   </div>
-
-  <!-- Project 4: Wellness & Power -->
-  <!-- <div class="glass-card rounded-3xl overflow-hidden p-8" data-aos="fade-up">
-    <h3 class="text-xl font-bold text-white mb-2">Wellness & Power</h3>
-    <p class="text-gray-400 text-sm leading-relaxed mb-4">A health & lifestyle guidance platform built for user experience and tracking fitness goals.</p>
-    <div class="flex gap-2">
-      <span class="px-3 py-1 bg-accentPurple/10 text-accentPurple rounded-full text-xs font-mono">JavaScript</span>
-      <span class="px-3 py-1 bg-accentPurple/10 text-accentPurple rounded-full text-xs font-mono">Tailwind</span>
-    </div>
-  </div> -->
-
-  <!-- Project 5: CodeVeda Landing Page -->
-  <!-- <div class="glass-card rounded-3xl overflow-hidden p-8" data-aos="fade-up">
-    <h3 class="text-xl font-bold text-white mb-2">CodeVeda Landing Page</h3>
-    <p class="text-gray-400 text-sm leading-relaxed mb-4">A fully responsive modern tech landing page built with clean semantic HTML and custom CSS animation.</p>
-    <div class="flex gap-2">
-      <span class="px-3 py-1 bg-accentCyan/10 text-accentCyan rounded-full text-xs font-mono">HTML/CSS</span>
-      <span class="px-3 py-1 bg-accentCyan/10 text-accentCyan rounded-full text-xs font-mono">Animations</span>
-    </div>
-  </div> -->
-
-</div>
-
-<!-- Toggle Button -->
-<div class="text-center mt-12">
-  <button id="toggle-btn" onclick="toggleProjects()" class="px-8 py-3.5 border border-accentPurple text-accentPurple hover:bg-accentPurple hover:text-white font-bold rounded-full transition duration-300 shadow-lg">
-    Show All Projects <i class="fa-solid fa-chevron-down ml-2"></i>
-  </button>
-</div>
 </section>
 
-  <!--Contact -->
-  <section id="contact" class="py-28 max-w-4xl mx-auto px-6" data-aos="fade-up">
-    <div class="glass-card rounded-3xl p-8 md:p-14 text-center relative overflow-hidden">
-      <span class="text-accentPurple text-xs font-mono uppercase tracking-widest">Connect With Me</span>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3 mb-4">Let's Create Something Great</h2>
-      <p class="text-gray-400 text-sm md:text-base max-w-lg mx-auto mb-12">Click on any platform below to connect with me directly. I am always open to new opportunities!</p>
+<!-- ==================== PROCESS (was "Story") ==================== -->
+<section id="about" class="py-24 border-y border-gray-800/40 relative">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">How I Turn Ideas into Reality</h2>
+      <p class="text-gray-400 text-sm">Every line of code serves a purpose. Here is how I approach creating impactful web solutions.</p>
+    </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-        <a href="https://wa.me/201099952041?text=Hello,%20I%27m%20interested%20in%20your%20services" target="_blank" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-emerald-500/50 group transition">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-125 transition">
-            <i class="fa-brands fa-whatsapp"></i>
-          </div>
-          <span class="text-white font-bold text-sm">WhatsApp</span>
-        </a>
-
-        <a href="https://www.linkedin.com/in/norhan-essam-552aa0252/" target="_blank" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-blue-500/50 group transition">
-          <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl group-hover:scale-125 transition">
-            <i class="fa-brands fa-linkedin-in"></i>
-          </div>
-          <span class="text-white font-bold text-sm">LinkedIn</span>
-        </a>
-
-        <a href="mailto:nourhanessam897@gmail.com" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-accentPurple/50 group transition">
-          <div class="w-12 h-12 rounded-xl bg-accentPurple/10 text-accentPurple flex items-center justify-center text-2xl group-hover:scale-125 transition">
-            <i class="fa-regular fa-envelope"></i>
-          </div>
-          <span class="text-white font-bold text-sm">Email</span>
-        </a>
-
-        <a href="https://vt.tiktok.com/ZS4GV1XJ3/" target="_blank" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-pink-500/50 group transition">
-          <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-2xl group-hover:scale-125 transition">
-            <i class="fa-brands fa-tiktok"></i>
-          </div>
-          <span class="text-white font-bold text-sm">TikTok</span>
-        </a>
-
-        <a href="https://www.instagram.com/nourhan_897?igsh=YzZxejZxcWc1Z2No" target="_blank" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-purple-500/50 group transition">
-          <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl group-hover:scale-125 transition">
-            <i class="fa-brands fa-instagram"></i>
-          </div>
-          <span class="text-white font-bold text-sm">Instagram</span>
-        </a>
-
-        <a href="https://github.com/Nourhan-Essam" target="_blank" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-gray-400/50 group transition">
-          <div class="w-12 h-12 rounded-xl bg-gray-500/10 text-gray-300 flex items-center justify-center text-2xl group-hover:scale-125 transition">
-            <i class="fa-brands fa-github"></i>
-          </div>
-          <span class="text-white font-bold text-sm">GitHub</span>
-        </a>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-12 h-12 rounded-2xl bg-accentPurple/20 text-accentPurple flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3 class="text-lg font-bold text-white mb-2">1. Understanding the Goal</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">I bridge Business Information Systems with development to understand your audience and core objectives first.</p>
+      </div>
+      <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="250">
+        <div class="w-12 h-12 rounded-2xl bg-accentCyan/20 text-accentCyan flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-code"></i></div>
+        <h3 class="text-lg font-bold text-white mb-2">2. Clean & Scalable Code</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Writing modular JavaScript, React, and responsive layouts that ensure high performance and seamless interaction.</p>
+      </div>
+      <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
+        <div class="w-12 h-12 rounded-2xl bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3 class="text-lg font-bold text-white mb-2">3. Eye-Catching Animations</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Adding micro-interactions and smooth animations using GSAP & Tailwind to leave a memorable impression.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  
-  <script>
-    // 1. Initialize AOS (Animate On Scroll)
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-out-cubic',
-      once: false, // Re-animates on scroll back
-    });
+<!-- ==================== SKILLS ==================== -->
+<section id="skills" class="py-24 bg-cardBg/30 border-b border-gray-800/40" data-aos="fade-up">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <span class="text-accentCyan text-xs font-mono uppercase tracking-widest">Capabilities</span>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-1 mb-3">Tech Stack & Creative Skills</h2>
+    <p class="text-gray-400 text-sm mb-14 max-w-xl mx-auto">Tools and frameworks I build digital products with.</p>
 
-    // 2. Initialize Swiper Slider
-    new Swiper(".mySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      autoplay: { delay: 3500 },
-      pagination: { el: ".swiper-pagination", clickable: true },
-      breakpoints: { 768: { slidesPerView: 2, spaceBetween: 30 } }
-    });
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-    // 3. Smooth Toggle Extra Projects
-    function toggleProjects() {
-      const moreProjects = document.getElementById('more-projects');
-      const btn = document.getElementById('toggle-btn');
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="100">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-pink-400/10 flex items-center justify-center text-pink-400 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-brands fa-figma"></i></div>
+        <h4 class="text-white font-bold text-base">Figma</h4>
+        <p class="text-gray-500 text-xs mt-1">UI/UX Design</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="200">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-violet-400/10 flex items-center justify-center text-violet-400 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-solid fa-pen-ruler"></i></div>
+        <h4 class="text-white font-bold text-base">UI/UX Design</h4>
+        <p class="text-gray-500 text-xs mt-1">Wireframes & Prototypes</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="300">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-brands fa-html5"></i></div>
+        <h4 class="text-white font-bold text-base">HTML5</h4>
+        <p class="text-gray-500 text-xs mt-1">Semantic Structure</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="400">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-brands fa-css3-alt"></i></div>
+        <h4 class="text-white font-bold text-base">CSS3</h4>
+        <p class="text-gray-500 text-xs mt-1">Responsive Design</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="100">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-yellow-400/10 flex items-center justify-center text-yellow-400 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-brands fa-js"></i></div>
+        <h4 class="text-white font-bold text-base">JavaScript</h4>
+        <p class="text-gray-500 text-xs mt-1">ES6+ Logic</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="200">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-400 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-brands fa-react"></i></div>
+        <h4 class="text-white font-bold text-base">React.js</h4>
+        <p class="text-gray-500 text-xs mt-1">Interactive Web Apps</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="300">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-teal-400/10 flex items-center justify-center text-teal-400 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-solid fa-wind"></i></div>
+        <h4 class="text-white font-bold text-base">Tailwind CSS</h4>
+        <p class="text-gray-500 text-xs mt-1">Modern UI Styling</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="400">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-emerald-400/10 flex items-center justify-center text-emerald-400 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-solid fa-play"></i></div>
+        <h4 class="text-white font-bold text-base">GSAP</h4>
+        <p class="text-gray-500 text-xs mt-1">Animations</p>
+      </div>
+
       
-      if (moreProjects.classList.contains('hidden')) {
-        moreProjects.classList.remove('hidden');
-        gsap.fromTo("#more-projects", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 });
-        btn.innerHTML = 'Show Less Projects <i class="fa-solid fa-chevron-up ml-2"></i>';
-      } else {
-        gsap.to("#more-projects", {
-          opacity: 0, y: 30, duration: 0.4, onComplete: () => {
-            moreProjects.classList.add('hidden');
-            btn.innerHTML = 'Show All Projects <i class="fa-solid fa-chevron-down ml-2"></i>';
-          }
-        });
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="200">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-lime-400/10 flex items-center justify-center text-lime-400 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-solid fa-mobile-screen"></i></div>
+        <h4 class="text-white font-bold text-base">Responsive Design</h4>
+        <p class="text-gray-500 text-xs mt-1">Mobile-First Layouts</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="300">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-brands fa-git-alt"></i></div>
+        <h4 class="text-white font-bold text-base">Git & GitHub</h4>
+        <p class="text-gray-500 text-xs mt-1">Version Control</p>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl group" data-aos="zoom-in" data-aos-delay="400">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-purple-400/10 flex items-center justify-center text-purple-400 text-3xl group-hover:rotate-12 transition duration-300"><i class="fa-solid fa-video"></i></div>
+        <h4 class="text-white font-bold text-base">Content Creation</h4>
+        <p class="text-gray-500 text-xs mt-1">Tech Storytelling</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section id="contact" class="py-28 max-w-4xl mx-auto px-6" data-aos="fade-up">
+  <div class="glass-card rounded-3xl p-8 md:p-14 text-center relative overflow-hidden">
+    <span class="text-accentPurple text-xs font-mono uppercase tracking-widest">Connect With Me</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-3 mb-4">Let's Create Something Great</h2>
+    <p class="text-gray-400 text-sm md:text-base max-w-lg mx-auto mb-12">Have a project in mind? Message me on WhatsApp or email and let's build it together.</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+      <a href="https://wa.me/201099952041?text=Hello,%20I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-emerald-500/50 group transition">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-125 transition"><i class="fa-brands fa-whatsapp"></i></div>
+        <span class="text-white font-bold text-sm">WhatsApp</span>
+      </a>
+      <a href="https://www.linkedin.com/in/norhan-essam-552aa0252/" target="_blank" rel="noopener" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-blue-500/50 group transition">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl group-hover:scale-125 transition"><i class="fa-brands fa-linkedin-in"></i></div>
+        <span class="text-white font-bold text-sm">LinkedIn</span>
+      </a>
+      <a href="mailto:essamnourhan124@gmail.com" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-accentPurple/50 group transition">
+        <div class="w-12 h-12 rounded-xl bg-accentPurple/10 text-accentPurple flex items-center justify-center text-2xl group-hover:scale-125 transition"><i class="fa-regular fa-envelope"></i></div>
+        <span class="text-white font-bold text-sm">Email</span>
+      </a>
+      <a href="https://vt.tiktok.com/ZS4GV1XJ3/" target="_blank" rel="noopener" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-pink-500/50 group transition">
+        <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-2xl group-hover:scale-125 transition"><i class="fa-brands fa-tiktok"></i></div>
+        <span class="text-white font-bold text-sm">TikTok</span>
+      </a>
+      <a href="https://www.instagram.com/nourhan_897?igsh=YzZxejZxcWc1Z2No" target="_blank" rel="noopener" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-purple-500/50 group transition">
+        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl group-hover:scale-125 transition"><i class="fa-brands fa-instagram"></i></div>
+        <span class="text-white font-bold text-sm">Instagram</span>
+      </a>
+      <a href="https://github.com/Nourhan-Essam" target="_blank" rel="noopener" class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-gray-400/50 group transition">
+        <div class="w-12 h-12 rounded-xl bg-gray-500/10 text-gray-300 flex items-center justify-center text-2xl group-hover:scale-125 transition"><i class="fa-brands fa-github"></i></div>
+        <span class="text-white font-bold text-sm">GitHub</span>
+      </a>
+    </div>
+
+    <a href="updated/My CV.pdf" download class="glass-card mt-6 p-5 rounded-2xl flex items-center justify-center gap-3 hover:border-accentCyan/50 group transition">
+      <span class="text-accentCyan text-xl group-hover:scale-125 transition"><i class="fa-solid fa-file-arrow-down"></i></span>
+      <span class="text-white font-bold text-sm">Download my CV</span>
+    </a>
+  </div>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+// 1. Animate On Scroll (play once)
+AOS.init({
+  duration: 1000,
+  easing: 'ease-out-cubic',
+  once: true,
+});
+
+// Once a card has finished its AOS entrance, mark it so the snappy hover transition applies
+const markDone = (el) => setTimeout(() => el.classList.add('aos-done'),
+  1200 + parseInt(el.dataset.aosDelay || '0', 10));
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { markDone(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.glass-card[data-aos]').forEach((el) => io.observe(el));
+} else {
+  document.querySelectorAll('.glass-card[data-aos]').forEach(markDone);
+}
+
+// 2. Hero story: one staggered reveal (skipped for reduced motion)
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  gsap.from('.hero-step', { opacity: 0, y: 24, duration: 0.8, stagger: 0.22, ease: 'power2.out', clearProps: 'all' });
+}
+
+// 3. Show / hide extra projects
+function toggleProjects() {
+  const moreProjects = document.getElementById('more-projects');
+  const btn = document.getElementById('toggle-btn');
+
+  if (moreProjects.classList.contains('hidden')) {
+    moreProjects.classList.remove('hidden');
+    gsap.fromTo("#more-projects", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 });
+    btn.innerHTML = 'Show Less Projects <i class="fa-solid fa-chevron-up ml-2"></i>';
+  } else {
+    gsap.to("#more-projects", {
+      opacity: 0, y: 30, duration: 0.4, onComplete: () => {
+        moreProjects.classList.add('hidden');
+        btn.innerHTML = 'Show All Projects <i class="fa-solid fa-chevron-down ml-2"></i>';
       }
-    }
-
-  
-  function moveSlide(button, direction) {
-    // 1. البحث عن أقرب container للأسهم والسلايدر
-    const sliderContainer = button.closest('.group\\/slider');
-    const carousel = sliderContainer.querySelector('.project-carousel');
-    const totalSlides = carousel.children.length;
-
-    // 2. قراءة رقم الشريحة الحالية المخزنة في الكارت (أو البدء من 0)
-    let currentSlide = parseInt(carousel.dataset.currentSlide || '0', 10);
-
-    // 3. حساب الشريحة الجديدة
-    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-
-    // 4. حفظ الشريحة الجديدة وتطبيق حركة الـ Transform
-    carousel.dataset.currentSlide = currentSlide;
-    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    });
   }
-  </script>
+}
+
+// 4. Image carousel inside each project card
+function moveSlide(button, direction) {
+  const sliderContainer = button.closest('.group\\/slider');
+  const carousel = sliderContainer.querySelector('.project-carousel');
+  const totalSlides = carousel.children.length;
+
+  let currentSlide = parseInt(carousel.dataset.currentSlide || '0', 10);
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+
+  carousel.dataset.currentSlide = currentSlide;
+  carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+</script>
+
 </body>
 </html>
